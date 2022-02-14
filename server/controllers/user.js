@@ -1,8 +1,9 @@
-const User = require("../models/user");
-const Product = require("../models/product");
-const Cart = require("../models/cart");
-const Coupon = require("../models/coupon");
-const Order = require("../models/order");
+const User = require("../database/models/user");
+const Product = require("../database/models/product");
+const Cart = require("../database/models/cart");
+const Coupon = require("../database/models/coupon");
+const Order = require("../database/models/order");
+const UserDetails = require("../database/models/userDetaels");
 
 exports.createOrder = async (req, res) => {
   const { paymentIntent } = req.body.stripeResponse;
@@ -10,11 +11,13 @@ exports.createOrder = async (req, res) => {
   const user = await User.findOne({ email: req.user.email }).exec();
 
   let { products } = await Cart.findOne({ orderdBy: user._id }).exec();
+  let { usersDetails } = await UserDetails.findOne({ user: user._id }).exec();
 
   let newOrder = await new Order({
     products,
     paymentIntent,
     orderdBy: user._id,
+    usersDetails,
   }).save();
 
   // decrement quantity, increment sold
@@ -29,7 +32,7 @@ exports.createOrder = async (req, res) => {
 
   let updated = await Product.bulkWrite(bulkOption, {});
 
-  res.json({ ok: true });
+  res.json({ ok: true, newOrder });
 };
 
 exports.createCashOrder = async (req, res) => {
@@ -39,6 +42,7 @@ exports.createCashOrder = async (req, res) => {
   if (!COD) return res.status(400).send("Create cash order failed");
   const user = await User.findOne({ email: req.user.email }).exec();
   let userCart = await Cart.findOne({ orderdBy: user._id }).exec();
+  let { usersDetails } = await UserDetails.findOne({ user: user._id }).exec();
   let finalAmount = 0;
   if (couponApplied && userCart.totalAfterDiscount) {
     finalAmount = userCart.totalAfterDiscount * 100;
@@ -51,13 +55,14 @@ exports.createCashOrder = async (req, res) => {
     paymentIntent: {
       id: uniqueid(),
       amount: finalAmount,
-      currency: "jd",
+      currency: "$",
       status: "Cash On Delivery",
       created: Date.now(),
       payment_method_types: ["cash"],
     },
     orderdBy: user._id,
     orderStatus: "Cash On Delivery",
+    usersDetails: usersDetails,
   }).save();
 
   // decrement quantity, increment sold

@@ -26,6 +26,7 @@ const orderSchema = new mongoose.Schema(
       ],
     },
     orderdBy: { type: ObjectId, ref: "User" },
+    userDeteails: { type: ObjectId, ref: "UserDetails" },
   },
   { timestamps: true }
 );

@@ -1,4 +1,4 @@
-const Order = require("../models/order");
+const Order = require("../database/models/order");
 
 exports.orders = async (req, res) => {
   let allOrders = await Order.find({})

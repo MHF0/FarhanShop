@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export const getColors = async () =>
-  await axios.get(`${process.env.REACT_APP_API}/colors`);
+  await axios.get(`http://localhost:5000/api/colors`);
 
 export const getColor = async (slug) =>
-  await axios.get(`${process.env.REACT_APP_API}/color/${slug}`);
+  await axios.get(`http://localhost:5000/api/color/${slug}`);
 
 export const removeColor = async (slug, authtoken) =>
   await axios.delete(
-    `${process.env.REACT_APP_API}/color/${slug}`,
+    `http://localhost:5000/api/color/${slug}`,
     {
       headers: {
         authtoken,
@@ -18,7 +18,7 @@ export const removeColor = async (slug, authtoken) =>
 
 export const updateColor = async (slug, color, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/color/${slug}`,
+    `http://localhost:5000/api/color/${slug}`,
     color,
     {
       headers: {
@@ -28,7 +28,7 @@ export const updateColor = async (slug, color, authtoken) =>
   );
 
 export const createColor = async (color, authtoken) =>
-  await axios.post(`${process.env.REACT_APP_API}/color`, color, {
+  await axios.post(`http://localhost:5000/api/color`, color, {
     headers: {
       authtoken,
     },
@@ -36,7 +36,7 @@ export const createColor = async (color, authtoken) =>
 
 export const createSallerColor = async (color, authtoken) =>
   await axios.post(
-    `${process.env.REACT_APP_API}/saller/color`,
+    `http://localhost:5000/api/saller/color`,
     color,
     {
       headers: {

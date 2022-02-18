@@ -7,11 +7,12 @@ import { ToastContainer } from "react-toastify";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import Header from "./components/nav/Header";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
 // Using lazy
-// const Header = lazy(()=> import(""))
+const Login = lazy(() => import("./pages/auth/Login"));
 
-import "./App.css";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -41,7 +42,21 @@ const App = () => {
   }, [dispatch]);
   return (
     <div className="App">
-      <Header />
+      <Suspense
+        fallback={
+          <div className="col text-center p-5">
+            Farhan
+            <LoadingOutlined />
+            Shop
+          </div>
+        }
+      >
+        <Header />
+        <ToastContainer />
+        <Routes>
+          <Route path="/login" element={<Login/>} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };

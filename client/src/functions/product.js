@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const createProduct = async (product, authtoken) =>
   await axios.post(
-    `${process.env.REACT_APP_API}/product`,
+    `http://localhost:5000/api/product`,
     product,
     {
       headers: {
@@ -13,7 +13,7 @@ export const createProduct = async (product, authtoken) =>
 
 export const createSallerProduct = async (product, authtoken) =>
   await axios.post(
-    `${process.env.REACT_APP_API}/sallerProduct`,
+    `http://localhost:5000/api/sallerProduct`,
     product,
     {
       headers: {
@@ -24,12 +24,12 @@ export const createSallerProduct = async (product, authtoken) =>
 
 export const getProductsByCount = async (count) =>
   await axios.get(
-    `${process.env.REACT_APP_API}/products/${count}`
+    `http://localhost:5000/api/products/${count}`
   );
 
 export const removeProduct = async (slug, authtoken) =>
   await axios.delete(
-    `${process.env.REACT_APP_API}/product/${slug}`,
+    `http://localhost:5000/api/product/${slug}`,
     {
       headers: {
         authtoken,
@@ -38,11 +38,11 @@ export const removeProduct = async (slug, authtoken) =>
   );
 
 export const getProduct = async (slug) =>
-  await axios.get(`${process.env.REACT_APP_API}/product/${slug}`);
+  await axios.get(`http://localhost:5000/api/product/${slug}`);
 
 export const updateProduct = async (slug, product, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/product/${slug}`,
+    `http://localhost:5000/api/product/${slug}`,
     product,
     {
       headers: {
@@ -52,18 +52,18 @@ export const updateProduct = async (slug, product, authtoken) =>
   );
 
 export const getProducts = async (sort, order, page) =>
-  await axios.post(`${process.env.REACT_APP_API}/products`, {
+  await axios.post(`http://localhost:5000/api/products`, {
     sort,
     order,
     page,
   });
 
 export const getProductsCount = async () =>
-  await axios.get(`${process.env.REACT_APP_API}/products/total`);
+  await axios.get(`http://localhost:5000/api/products/total`);
 
 export const productStar = async (productId, star, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/product/star/${productId}`,
+    `http://localhost:5000/api/product/star/${productId}`,
     { star },
     {
       headers: {
@@ -74,7 +74,7 @@ export const productStar = async (productId, star, authtoken) =>
 
 export const productComment = async (productId, comment, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/product/comment/${productId}`,
+    `http://localhost:5000/api/product/comment/${productId}`,
     { comment },
     {
       headers: {
@@ -85,11 +85,11 @@ export const productComment = async (productId, comment, authtoken) =>
 
 export const getRelated = async (productId) =>
   await axios.get(
-    `${process.env.REACT_APP_API}/product/related/${productId}`
+    `http://localhost:5000/api/product/related/${productId}`
   );
 
 export const fetchProductsByFilter = async (arg) =>
   await axios.post(
-    `${process.env.REACT_APP_API}/search/filters`,
+    `http://localhost:5000/api/search/filters`,
     arg
   );

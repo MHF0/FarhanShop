@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export const getBrands = async () =>
-  await axios.get(`${process.env.REACT_APP_API}/brands`);
+  await axios.get(`http://localhost:5000/api/brands`);
 
 export const getBrand = async (slug) =>
-  await axios.get(`${process.env.REACT_APP_API}/brand/${slug}`);
+  await axios.get(`http://localhost:5000/api/brand/${slug}`);
 
 export const removeBrand = async (slug, authtoken) =>
   await axios.delete(
-    `${process.env.REACT_APP_API}/brand/${slug}`,
+    `http://localhost:5000/api/brand/${slug}`,
     {
       headers: {
         authtoken,
@@ -18,7 +18,7 @@ export const removeBrand = async (slug, authtoken) =>
 
 export const updateBrand = async (slug, brand, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/brand/${slug}`,
+    `http://localhost:5000/api/brand/${slug}`,
     brand,
     {
       headers: {
@@ -28,7 +28,7 @@ export const updateBrand = async (slug, brand, authtoken) =>
   );
 
 export const createBrand = async (brand, authtoken) =>
-  await axios.post(`${process.env.REACT_APP_API}/brand`, brand, {
+  await axios.post(`http://localhost:5000/api/brand`, brand, {
     headers: {
       authtoken,
     },

@@ -1,16 +1,16 @@
 import axios from "axios";
 
 export const getShippings = async () =>
-  await axios.get(`${process.env.REACT_APP_API}/shippings`);
+  await axios.get(`http://localhost:5000/api/shippings`);
 
 export const getShipping = async (slug) =>
   await axios.get(
-    `${process.env.REACT_APP_API}/shipping/${slug}`
+    `http://localhost:5000/api/shipping/${slug}`
   );
 
 export const removeShipping = async (slug, authtoken) =>
   await axios.delete(
-    `${process.env.REACT_APP_API}/shipping/${slug}`,
+    `http://localhost:5000/api/shipping/${slug}`,
     {
       headers: {
         authtoken,
@@ -20,7 +20,7 @@ export const removeShipping = async (slug, authtoken) =>
 
 export const updateShipping = async (slug, shipping, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/shipping/${slug}`,
+    `http://localhost:5000/api/shipping/${slug}`,
     shipping,
     {
       headers: {
@@ -31,7 +31,7 @@ export const updateShipping = async (slug, shipping, authtoken) =>
 
 export const createShipping = async (shipping, authtoken) =>
   await axios.post(
-    `${process.env.REACT_APP_API}/shipping`,
+    `http://localhost:5000/api/shipping`,
     shipping,
     {
       headers: {

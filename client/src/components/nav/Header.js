@@ -3,7 +3,6 @@ import "./Header.css";
 import Logo from "./logo.png";
 import {
   HomeOutlined,
-  MenuOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
@@ -11,9 +10,6 @@ import {
 export default function Header() {
   return (
     <div className="header">
-      {/* <div className="header_menuicon">
-        <MenuOutlined />
-      </div> */}
       <img src={Logo} alt="logo" className="header_logo" />
 
       <div className="header_text">

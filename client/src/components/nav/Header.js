@@ -117,11 +117,15 @@ export default function Header() {
         <div className="header_text1"></div>
         <div className="header_text2"></div>
       </div>
-      <div className="header_cart">
-        <ShoppingCartOutlined style={{ fontSize: "50px" }} />
-        <span className="header_cartCount">{cart.length}</span>
-        <span className="header_cartText">Cart</span>
-      </div>
+      <Link to={"/cart"}>
+        <div className="header_cart">
+          <ShoppingCartOutlined style={{ fontSize: "53px" }} />
+          <span className="header_cartCount">
+            <b>{cart.length}</b>
+          </span>
+          <span className="header_cartText">Cart</span>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import firebase from "firebase";
 
 export default function Header() {
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, cart } = useSelector((state) => ({ ...state }));
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -119,7 +119,7 @@ export default function Header() {
       </div>
       <div className="header_cart">
         <ShoppingCartOutlined style={{ fontSize: "50px" }} />
-        <span className="header_cartCount">0</span>
+        <span className="header_cartCount">{cart.length}</span>
         <span className="header_cartText">Cart</span>
       </div>
     </div>

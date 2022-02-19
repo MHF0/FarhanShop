@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user && user.token) navigate("/");
-  }, [user, navigate]);
+  }, [user]);
 
   let dispatch = useDispatch();
 

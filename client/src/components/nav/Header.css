@@ -49,6 +49,7 @@
     outline-offset: 0;
     padding: 8px;
     margin: 2px;
+    border-radius: 2px;
 }
 
 .header_text .header_text1 {
@@ -76,6 +77,8 @@
     outline-offset: 0;
     padding: 2px;
     margin: 7px;
+    border-radius: 2px;
+
 }
 
 .header_cartText {

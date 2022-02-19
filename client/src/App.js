@@ -12,6 +12,8 @@ import "./App.css";
 
 // Using lazy
 const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Register"));
+const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,7 +56,9 @@ const App = () => {
         <Header />
         <ToastContainer />
         <Routes>
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/register/complete" element={<RegisterComplete />} />
         </Routes>
       </Suspense>
     </div>

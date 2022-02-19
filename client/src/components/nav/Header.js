@@ -70,17 +70,33 @@ export default function Header() {
       </div>
       {user && user ? (
         <>
-          <Dropdown overlay={menu}>
-            <a
-              className="ant-dropdown-link"
-              onClick={(e) => e.preventDefault()}
-            >
-              <div className="header_text">
-                <div className="header_text1">Hi, {user.name}</div>
-                <div className="header_text2">Account & Settings</div>
-              </div>
-            </a>
-          </Dropdown>
+          {user && user.role === "admin" ? (
+            <Dropdown overlay={menu}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+                href="/admin/dashboard"
+              >
+                <div className="header_text">
+                  <div className="header_text1">Hi, {user.name}</div>
+                  <div className="header_text2">Admin dashboard & Settings</div>
+                </div>
+              </a>
+            </Dropdown>
+          ) : (
+            <Dropdown overlay={menu}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+                href="/user/history"
+              >
+                <div className="header_text">
+                  <div className="header_text1">Hi, {user.name}</div>
+                  <div className="header_text2">Account & Settings</div>
+                </div>
+              </a>
+            </Dropdown>
+          )}
         </>
       ) : (
         <>

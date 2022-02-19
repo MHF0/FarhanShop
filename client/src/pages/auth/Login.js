@@ -146,14 +146,22 @@ const Login = () => {
             className="mb-3"
             block
             shape="round"
-            icon={<GoogleOutlined />}
             size="large"
           >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
+              alt=""
+              style={{ width: "7%", marginLeft: "1%", padding: "3px" }}
+            />
             Login with Google
           </Button>
 
           <Link to="/forgot/password" className="float-right text-danger">
             Forgot Password
+          </Link>
+
+          <Link to="/register" className="float-left text-danger">
+            Did't have an account?
           </Link>
         </div>
       </div>

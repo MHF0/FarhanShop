@@ -95,6 +95,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/user/history" element={<History />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -127,7 +128,6 @@ const App = () => {
         <AdminRoute path="/admin/brand/:slug" element={<BrandUpdate />} />
 
         {/* User Route */}
-        <UserRoute path="/user/history" element={<History />} />
         <UserRoute path="/user/password" element={<Password />} />
         <UserRoute path="/user/wishlist" element={<Wishlist />} />
 

@@ -15,7 +15,6 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import Star from "../components/forms/Star";
-import Header from "../components/nav/Header";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Link } from "react-router-dom";
@@ -229,7 +228,6 @@ const Shop = () => {
 
   return (
     <>
-      <Header />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3 pt-2">
@@ -341,7 +339,7 @@ const Shop = () => {
               </AliceCarousel>
             </div>
 
-            {products.length < 1 && <p>لا يوجد منتجات</p>}
+            {products.length < 1 && <p>No Product</p>}
 
             <div className="row pb-5">
               {products.map((p) => (

@@ -31,11 +31,9 @@ export default function Header() {
   const menu = (
     <Menu>
       <Menu.Item key="1">
-        {user && user.role === "user" && (
+        {user && user.role === "user" ? (
           <Link to="/user/history">Dashboard</Link>
-        )}
-
-        {user && user.role === "admin" && (
+        ) : (
           <Link to="/admin/dashboard">Dashboard</Link>
         )}
       </Menu.Item>
@@ -70,31 +68,21 @@ export default function Header() {
       </div>
       {user && user ? (
         <>
-          {user && user.role === "admin" ? (
+          {user.role && user.role === "user" && (
             <Dropdown overlay={menu}>
-              <a
-                className="ant-dropdown-link"
-                onClick={(e) => e.preventDefault()}
-                href="/admin/dashboard"
-              >
-                <div className="header_text">
-                  <div className="header_text1">Hi, {user.name}</div>
-                  <div className="header_text2">Admin dashboard & Settings</div>
-                </div>
-              </a>
+              <div className="header_text">
+                <div className="header_text1">Hi, {user.name}</div>
+                <div className="header_text2">Account & Settings</div>
+              </div>
             </Dropdown>
-          ) : (
+          )}
+
+          {user.role && user.role === "admin" && (
             <Dropdown overlay={menu}>
-              <a
-                className="ant-dropdown-link"
-                onClick={(e) => e.preventDefault()}
-                href="/user/history"
-              >
-                <div className="header_text">
-                  <div className="header_text1">Hi, {user.name}</div>
-                  <div className="header_text2">Account & Settings</div>
-                </div>
-              </a>
+              <div className="header_text">
+                <div className="header_text1">Hi, {user.name}</div>
+                <div className="header_text2">Admin dashboard & Settings</div>
+              </div>
             </Dropdown>
           )}
         </>
@@ -109,14 +97,12 @@ export default function Header() {
           </Link>
         </>
       )}
-      <div className="header_text">
-        <div className="header_text1">Your</div>
-        <div className="header_text2">Orders</div>
-      </div>
-      <div className="header_text">
-        <div className="header_text1"></div>
-        <div className="header_text2"></div>
-      </div>
+      <Link to={"/user/history"}>
+        <div className="header_text">
+          <div className="header_text1">Your</div>
+          <div className="header_text2">Orders</div>
+        </div>
+      </Link>
       <Link to={"/cart"}>
         <div className="header_cart">
           <ShoppingCartOutlined style={{ fontSize: "53px" }} />

@@ -54,9 +54,9 @@ const ProductListItems = ({ product }) => {
           {colors.map((c) => (
             <div
               key={c._id}
-              className="label label-default label-pill pull-xs-left"
+              className="label label-default label-pill pull-xs-right"
             >
-              <div>{c.name}</div>
+              {c.name}
             </div>
           ))}
         </li>
@@ -69,9 +69,9 @@ const ProductListItems = ({ product }) => {
             <Link
               key={b._id}
               to={`/brand/${b.slug}`}
-              className="label label-default label-pill pull-xs-left"
+              className="label label-default label-pill pull-xs-right"
             >
-              <div>{b.name}</div>
+              {b.name}
             </Link>
           ))}
         </li>

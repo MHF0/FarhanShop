@@ -6,8 +6,15 @@ const router = express.Router();
 const { authCheck } = require("../middlewares/auth");
 
 // controller
-const { createUserDetails } = require("../controllers/userDetails");
+const {
+  createUserDetails,
+  updateUserDetails,
+  getUserDetailsById,
+} = require("../controllers/createUserDetaeils");
 
 router.post("/createuserdetails", authCheck, createUserDetails);
+router.put("/updateUserDetails", authCheck, updateUserDetails);
+router.get("/getUserDetails", authCheck, getUserDetailsById);
+
 
 module.exports = router;

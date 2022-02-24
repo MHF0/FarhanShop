@@ -3,14 +3,14 @@ import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { createOrUpdateUser } from "../../functions/auth";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const RegisterComplete = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-    const dispatch = useDispatch();
-    const navigatte = useNavigate()
+  const dispatch = useDispatch();
+  const navigatte = useHistory();
   useEffect(() => {
     setEmail(window.localStorage.getItem("emailForRegistration"));
   }, [navigatte]);
@@ -58,7 +58,7 @@ const RegisterComplete = () => {
           .catch((err) => console.log(err));
 
         // redirect
-        navigatte("/");
+        navigatte.push("/");
       }
     } catch (error) {
       console.log(error);

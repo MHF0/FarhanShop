@@ -4,64 +4,63 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { getBrand, updateBrand } from "../../../functions/brand";
 import BrandForm from "../../../components/forms/BrandForm";
-import { useNavigate, useParams } from "react-router-dom";
 
-const BrandUpdate = () => {
-  const { user } = useSelector((state) => ({ ...state }));
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { slug } = useParams();
+const BrandUpdate = ({ history, match }) => {
+    const { user } = useSelector((state) => ({ ...state }));
 
-  useEffect(() => {
-    loadBrand();
-    // eslint-disable-next-line
-  }, []);
+    const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false);
 
-  const loadBrand = () => getBrand(slug).then((b) => setName(b.data.name));
+    useEffect(() => {
+        loadBrand();
+        // eslint-disable-next-line
+    }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    updateBrand(slug, { name }, user.token)
-      .then((res) => {
-        setLoading(false);
-        setName("");
-        toast.success(`"${res.data.name}" is updated`);
-        navigate("/admin/brand");
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
-      });
-  };
+    const loadBrand = () =>
+        getBrand(match.params.slug).then((b) => setName(b.data.name));
 
-  return (
-    <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-2">
-            <AdminNav />
-          </div>
-          <div className="col">
-            {loading ? (
-              <h4 className="text-danger">Loading..</h4>
-            ) : (
-              <h4>Update brand</h4>
-            )}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        updateBrand(match.params.slug, { name }, user.token)
+            .then((res) => {
+                setLoading(false);
+                setName("");
+                toast.success(`"${res.data.name}" is updated`);
+                history.push("/admin/brand");
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+                if (err.response.status === 400) toast.error(err.response.data);
+            });
+    };
 
-            <BrandForm
-              handleSubmit={handleSubmit}
-              name={name}
-              setName={setName}
-            />
-            <hr />
-          </div>
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-2">
+                        <AdminNav />
+                    </div>
+                    <div className="col">
+                        {loading ? (
+                            <h4 className="text-danger">Loading..</h4>
+                        ) : (
+                            <h4>Update brand</h4>
+                        )}
+
+                        <BrandForm
+                            handleSubmit={handleSubmit}
+                            name={name}
+                            setName={setName}
+                        />
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default BrandUpdate;

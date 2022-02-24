@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ProductCardInCheckout from "../components/cards/ProductCardInCheckout";
 import { userCart } from "../functions/user";
 
-const Cart = ({ history }) => {
+const Cart = () => {
   const { cart, user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-
+  const navigate = useHistory();
   const getTotal = () => {
     return cart.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.count * nextValue.price;
@@ -21,7 +21,7 @@ const Cart = ({ history }) => {
     });
     userCart(cart, user.token)
       .then((res) => {
-        if (res.data.ok) history.push("/checkout");
+        if (res.data.ok) navigate.push("/checkout");
       })
       .catch((err) => console.log("cart save err", err));
   };
@@ -30,14 +30,14 @@ const Cart = ({ history }) => {
     <table className="table table-bordered">
       <thead className="thead-light">
         <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Title</th>
-          <th scope="col">Price</th>
-          <th scope="col">Brand</th>
-          <th scope="col">Color</th>
-          <th scope="col">Count</th>
-          <th scope="col">Shipping</th>
           <th scope="col">Remove</th>
+          <th scope="col">Shipping</th>
+          <th scope="col">Count</th>
+          <th scope="col">Color</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Price</th>
+          <th scope="col">Title</th>
+          <th scope="col">Image</th>
         </tr>
       </thead>
 

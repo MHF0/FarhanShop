@@ -60,20 +60,21 @@ const productSchema = new mongoose.Schema(
       {
         type: ObjectId,
         ref: "Color",
-      },
+      }
     ],
     brands: [
       {
         type: ObjectId,
         ref: "Brand",
-      },
+      }
     ],
     ratings: [
       {
         star: Number,
         postedBy: { type: ObjectId, ref: "User" },
         comment: { type: String, required: true },
-        name: { type: String, require: true },
+        name: { type: String, require: true }
+
       },
     ],
   },

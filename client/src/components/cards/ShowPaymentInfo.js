@@ -3,7 +3,15 @@ import React from "react";
 const ShowPaymentInfo = ({ order, showStatus = true }) => (
   <div>
     <p>
-      <span>Order Id: {order._id}</span>
+      <span>Order Id: {order.paymentIntent.id}</span>
+      {" / "}
+      <span>
+        Amount:{" / "}
+        {(order.paymentIntent.amount /= 100).toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })}
+      </span>
       {" / "}
       <span>Currency: {order.paymentIntent.currency.toUpperCase()}</span>
       {" / "}
@@ -14,10 +22,6 @@ const ShowPaymentInfo = ({ order, showStatus = true }) => (
       <span>
         Orderd on:{" / "}
         {new Date(order.paymentIntent.created * 1000).toLocaleString()}
-      </span>
-      <span>
-        Full amount
-        {(order.paymentIntent.amount /= 100)} JD
       </span>
       {" / "}
       <br />

@@ -1,4 +1,6 @@
-const Coupon = require("../database/models/coupon");
+const Coupon = require("../models/coupon");
+
+// create, remove, list
 
 exports.create = async (req, res) => {
   try {

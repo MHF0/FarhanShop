@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const userCart = async (cart, authtoken) =>
   await axios.post(
-    `http://localhost:5000/api/user/cart`,
+    `http://localhost:8000/api/user/cart`,
     { cart },
     {
       headers: {
@@ -12,22 +12,23 @@ export const userCart = async (cart, authtoken) =>
   );
 
 export const getUserCart = async (authtoken) =>
-  await axios.get(`http://localhost:5000/api/user/cart`, {
+  await axios.get(`http://localhost:8000/api/user/cart`, {
     headers: {
       authtoken,
     },
   });
 
 export const emptyUserCart = async (authtoken) =>
-  await axios.delete(`http://localhost:5000/api/user/cart`, {
+  await axios.delete(`http://localhost:8000/api/user/cart`, {
     headers: {
       authtoken,
     },
   });
 
+
 export const applyCoupon = async (authtoken, coupon) =>
   await axios.post(
-    `http://localhost:5000/api/user/cart/coupon`,
+    `http://localhost:8000/api/user/cart/coupon`,
     { coupon },
     {
       headers: {
@@ -37,14 +38,14 @@ export const applyCoupon = async (authtoken, coupon) =>
   );
 
 export const getUserOrders = async (authtoken) =>
-  await axios.get(`http://localhost:5000/api/user/orders`, {
+  await axios.get(`http://localhost:8000/api/user/orders`, {
     headers: {
       authtoken,
     },
   });
 
 export const getWishlist = async (authtoken) =>
-  await axios.get(`http://localhost:5000/api/user/wishlist`, {
+  await axios.get(`http://localhost:8000/api/user/wishlist`, {
     headers: {
       authtoken,
     },
@@ -52,7 +53,7 @@ export const getWishlist = async (authtoken) =>
 
 export const removeWishlist = async (productId, authtoken) =>
   await axios.put(
-    `http://localhost:5000/api/user/wishlist/${productId}`,
+    `http://localhost:8000/api/user/wishlist/${productId}`,
     {},
     {
       headers: {
@@ -63,7 +64,7 @@ export const removeWishlist = async (productId, authtoken) =>
 
 export const addToWishlist = async (productId, authtoken) =>
   await axios.post(
-    `http://localhost:5000/api/user/wishlist`,
+    `http://localhost:8000/api/user/wishlist`,
     { productId },
     {
       headers: {
@@ -78,7 +79,7 @@ export const createCashOrderForUser = async (
   couponTrueOrFalse
 ) =>
   await axios.post(
-    `http://localhost:5000/api/user/cash-order`,
+    `http://localhost:8000/api/user/cash-order`,
     { couponApplied: couponTrueOrFalse, COD },
     {
       headers: {
@@ -86,3 +87,21 @@ export const createCashOrderForUser = async (
       },
     }
   );
+
+export const saveUSerQuestion = async (authtoken, question) =>
+  await axios.post(
+    `http://localhost:8000/api/user/question`,
+    { question },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+
+export const getUserQuestions = async (authtoken) =>
+  await axios.get(`http://localhost:8000/api/user/qusetions`, {
+    headers: {
+      authtoken,
+    },
+  });

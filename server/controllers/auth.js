@@ -1,4 +1,4 @@
-const User = require("../database/models/user");
+const User = require("../models/user");
 
 exports.createOrUpdateUser = async (req, res) => {
   const { name, picture, email } = req.user;

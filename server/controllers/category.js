@@ -1,6 +1,6 @@
-const Category = require("../database/models/category");
-const Product = require("../database/models/product");
-const Sub = require("../database/models/sub");
+const Category = require("../models/category");
+const Product = require("../models/product");
+const Sub = require("../models/sub");
 const slugify = require("../slugify");
 
 exports.create = async (req, res) => {

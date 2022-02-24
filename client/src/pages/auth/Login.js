@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
 import { toast } from "react-toastify";
 import { Button } from "antd";
-import { MailOutlined, GoogleOutlined } from "@ant-design/icons";
+import { MailOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createOrUpdateUser } from "../../functions/auth";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const Login = () => {
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    if (user && user.token) navigate("/");
+    if (user && user.token) navigate.push("/");
   }, [user]);
 
   let dispatch = useDispatch();
@@ -26,9 +26,9 @@ const Login = () => {
     // check if intended
 
     if (res.data.role === "admin") {
-      navigate("/admin/dashboard");
+      navigate.push("/admin/dashboard");
     } else {
-      navigate("/user/history");
+      navigate.push("/user/history");
     }
   };
 

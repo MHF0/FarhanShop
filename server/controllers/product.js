@@ -1,5 +1,5 @@
-const Product = require("../database/models/product");
-const User = require("../database/models/user");
+const Product = require("../models/product");
+const User = require("../models/user");
 const slugify = require("../slugify");
 
 exports.create = async (req, res) => {
@@ -289,7 +289,15 @@ const handleBrand = async (req, res, brand) => {
 };
 
 exports.searchFilters = async (req, res) => {
-  const { query, price, category, stars, sub, color, brand } = req.body;
+  const {
+    query,
+    price,
+    category,
+    stars,
+    sub,
+    color,
+    brand,
+  } = req.body;
 
   if (query) {
     await handleQuery(req, res, query);
@@ -319,4 +327,4 @@ exports.searchFilters = async (req, res) => {
   if (brand) {
     await handleBrand(req, res, brand);
   }
-};
+}

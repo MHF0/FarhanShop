@@ -31,7 +31,7 @@ const ProductCreateForm = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Name</label>
+        <label>Title</label>
         <input
           type="text"
           name="title"
@@ -43,7 +43,7 @@ const ProductCreateForm = ({
 
       <div className="form-group">
         <label>Description</label>
-        <textarea
+        <input
           type="text"
           name="description"
           className="form-control"
@@ -75,7 +75,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Count</label>
+        <label>Quantity</label>
         <input
           type="number"
           name="quantity"
@@ -102,7 +102,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Shipping</label>
+        <label>التوصيل</label>
         <input
           type="number"
           name="shipping"
@@ -149,7 +149,7 @@ const ProductCreateForm = ({
 
       {showSub && (
         <div>
-          <label>Sub category</label>
+          <label>Sub Categories</label>
           <Select
             mode="multiple"
             style={{ width: "100%" }}

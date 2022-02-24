@@ -66,6 +66,7 @@ const ProductCard = ({ product }) => {
             src={images && images.length ? images[0].url : laptop}
             style={{ height: "150px", objectFit: "cover" }}
             className="p-1"
+            alt=""
           />
         }
         actions={[
@@ -81,7 +82,7 @@ const ProductCard = ({ product }) => {
         ]}
       >
         <Meta
-          title={`${title} - JD${price}`}
+          title={`${title} - JD ${price}`}
           description={`${description && description.substring(0, 40)}...`}
         />
       </Card>

@@ -13,7 +13,9 @@ const AdminProductCard = ({ product, handleRemove }) => {
   return (
     <Card
       cover={
+        // eslint-disable-next-line 
         <img
+          alt='product image'
           src={images && images.length ? images[0].url : laptop}
           style={{ height: "150px", objectFit: "cover" }}
           className="p-1"

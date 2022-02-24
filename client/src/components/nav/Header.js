@@ -10,13 +10,14 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import firebase from "firebase";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const { user, cart } = useSelector((state) => ({ ...state }));
 
-  const navigate = useNavigate();
+  const navigate = useHistory();
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -25,13 +26,13 @@ export default function Header() {
       type: "LOGOUT",
       payload: null,
     });
-    navigate("/login");
+    navigate.push("/login");
   };
 
   const menu = (
     <Menu>
       <Menu.Item key="1">
-        {user && user.role === "user" ? (
+        {user && user.role === "subscriber" ? (
           <Link to="/user/history">Dashboard</Link>
         ) : (
           <Link to="/admin/dashboard">Dashboard</Link>
@@ -49,15 +50,36 @@ export default function Header() {
         {" "}
         <img src={Logo} alt="logo" className="header_logo" />
       </Link>
+      {user ? (
+        <Link to={"/user/userdetails"}>
+          {" "}
+          <div className="header_text">
+            <div className="header_text1">Hi, {user.name}</div>
 
-      <div className="header_text">
-        <div className="header_text1">Hi{user ? `, ${user.name}` : ""}</div>
+            <div className="header_text2">
+              <HomeOutlined style={{ marginRight: "5px" }} />
+              Select your address
+            </div>
+          </div>
+        </Link>
+      ) : (
+        <Link
+          onClick={() => {
+            toast.warn("Login First");
+          }}
+          to={"/login"}
+        >
+          {" "}
+          <div className="header_text">
+            <div className="header_text1">Hi</div>
 
-        <div className="header_text2">
-          <HomeOutlined style={{ marginRight: "5px" }} />
-          Select your address
-        </div>
-      </div>
+            <div className="header_text2">
+              <HomeOutlined style={{ marginRight: "5px" }} />
+              Select your address
+            </div>
+          </div>
+        </Link>
+      )}
 
       <div className="header_search">
         <input type="text" className="header_searchInput" />
@@ -68,7 +90,7 @@ export default function Header() {
       </div>
       {user && user ? (
         <>
-          {user.role && user.role === "user" && (
+          {user.role && user.role === "subscriber" && (
             <Dropdown overlay={menu}>
               <div className="header_text">
                 <div className="header_text1">Hi, {user.name}</div>

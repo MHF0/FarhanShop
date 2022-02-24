@@ -3,7 +3,6 @@ import UserNav from "../../components/nav/UserNav";
 import { getUserOrders } from "../../functions/user";
 import { useSelector } from "react-redux";
 import ShowPaymentInfo from "../../components/cards/ShowPaymentInfo";
-import Header from "../../components/nav/Header";
 import { Link } from "react-router-dom";
 
 const History = () => {
@@ -18,6 +17,7 @@ const History = () => {
 
   const loadUserOrders = () =>
     getUserOrders(user.token).then((res) => {
+      console.log(res.data);
       setOrders(res.data);
     });
 

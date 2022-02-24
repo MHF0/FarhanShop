@@ -12,7 +12,7 @@ import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist } from "../../functions/user";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const { TabPane } = Tabs;
 
@@ -21,12 +21,12 @@ const SingleProduct = ({ product, onStarClick, star }) => {
   const [tooltip, setTooltip] = useState("Click to add");
 
   // redux
-  const { user, cart } = useSelector((state) => ({ ...state }));
+  const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   // router
-  const navigate = useNavigate();
+  let history = useHistory();
 
-  const { title, images, description, _id, others } = product;
+  const { title, images, description, others, _id } = product;
 
   const handleAddToCart = () => {
     // create cart array
@@ -43,7 +43,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
       });
       // remove duplicates
       let unique = _.uniqWith(cart, _.isEqual);
-      // save to local storage
+
       localStorage.setItem("cart", JSON.stringify(unique));
       // show tooltip
       setTooltip("Added");
@@ -64,9 +64,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
   const handleAddToWishlist = (e) => {
     e.preventDefault();
     addToWishlist(product._id, user.token).then((res) => {
-      console.log("ADDED TO WISHLIST", res.data);
       toast.success("Added to wishlist");
-      navigate("/user/wishlist");
+      history.push("/user/wishlist");
     });
   };
 
@@ -74,7 +73,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
     <>
       <div className="col-md-7">
         {images && images.length ? (
-          <Carousel showArrows={true} infiniteLoop>
+          <Carousel showArrows={true} autoPlay infiniteLoop>
             {images && images.map((i) => <img src={i.url} key={i.public_id} />)}
           </Carousel>
         ) : (
@@ -86,7 +85,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
             {description && description}
           </TabPane>
           <TabPane tab="More" key="2">
-            {others}
+            Call use on 0785836823 to learn more about this product.
           </TabPane>
         </Tabs>
       </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LoadingToRedirect from "./LoadingToRedirect";
 import { currentAdmin } from "../../functions/auth";
@@ -21,13 +21,7 @@ const AdminRoute = ({ children, ...rest }) => {
     }
   }, [user]);
 
-  return ok ? (
-    <Routes>
-      <Route {...rest} />
-    </Routes>
-  ) : (
-    <LoadingToRedirect />
-  );
+  return ok ? <Route {...rest} /> : <LoadingToRedirect />;
 };
 
 export default AdminRoute;

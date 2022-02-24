@@ -1,5 +1,5 @@
 const admin = require("../firebase");
-const User = require("../database/models/user");
+const User = require("../models/user");
 
 exports.authCheck = async (req, res, next) => {
   try {
@@ -42,3 +42,4 @@ exports.sallerCheck = async (req, res, next) => {
     next();
   }
 };
+

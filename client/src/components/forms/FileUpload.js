@@ -56,7 +56,7 @@ const FileUpload = ({ values, setValues, setLoading }) => {
     setLoading(true);
     axios
       .post(
-        `http://localhost:5000/api/removeimage`,
+        `${process.env.REACT_APP_API}/removeimage`,
         { public_id },
         {
           headers: {

@@ -26,7 +26,7 @@ const Product = () => {
       );
       existingRatingObject && setStar(existingRatingObject.star); // current user's star
     }
-  });
+  },[]);
 
   const loadSingleProduct = () => {
     getProduct(slug).then((res) => {

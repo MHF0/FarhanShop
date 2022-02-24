@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button } from "antd";
-import { GoogleOutlined } from "@ant-design/icons";
 import { createOrUpdateUser } from "../../functions/auth";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const { user } = useSelector((state) => ({ ...state }));
 
-  const navigate = useNavigate();
+  const navigate = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user && user.token) navigate("/");
+    if (user && user.token) navigate.push("/");
   }, [user, navigate]);
 
   const handleSubmit = async (e) => {
@@ -38,9 +37,9 @@ const Register = () => {
     // check if intended
 
     if (res.data.role === "admin") {
-      navigate("/admin/dashboard");
+      navigate.push("/admin/dashboard");
     } else {
-      navigate("/user/history");
+      navigate.push("/user/history");
     }
   };
   const googleRegister = async () => {

@@ -1,5 +1,5 @@
-const Sub = require("../database/models/sub");
-const Product = require("../database/models/product");
+const Sub = require("../models/sub");
+const Product = require("../models/product");
 const slugify = require("../slugify");
 
 exports.create = async (req, res) => {

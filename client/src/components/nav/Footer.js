@@ -129,7 +129,7 @@ const Footer = () => {
                 <ul className="list-unstyled mb-0">
                   <li>
                     <a href="/yourSaller" className="text-white border-footer">
-                      Sell on TetraZoles
+                      Selle on TetraZones
                     </a>
                   </li>
                   <li>

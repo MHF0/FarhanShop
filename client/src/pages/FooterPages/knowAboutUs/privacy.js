@@ -1,5 +1,4 @@
 import React from "react";
-import Header from '../../../components/nav/Header';
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
@@ -8,7 +7,6 @@ const { Panel } = Collapse;
 const Privacy = () => {
     return (
         <>
-            <Header />
             <div className='container'>
                 <h1 className='text-right'>خصوصية الموقع</h1>
                 <br />

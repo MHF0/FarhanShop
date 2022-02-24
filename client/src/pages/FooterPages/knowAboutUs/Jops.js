@@ -1,10 +1,8 @@
 import React from "react";
-import Header from '../../../components/nav/Header';
 
 const Jops = () => {
     return (
       <>
-        <Header />
         <div className="container">
           <br />
           <div id="accordion">
